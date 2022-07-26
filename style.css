@@ -1,0 +1,24 @@
+section {
+  border-style: double;
+}
+
+img{
+  height: 500px;
+  width: 600px;
+  float: none;
+  border-radius: 50px;
+}
+
+body{
+  background-color: lemonchiffon;
+}
+
+h1 {
+  text-align: center;
+  height: 50px;
+}
+
+h2 {
+  text-align: center;
+  height: 50px;
+}

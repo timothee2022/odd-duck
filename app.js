@@ -8,8 +8,8 @@ let imgOne = document.getElementById('img-one');
 let imgTwo = document.getElementById('img-two');
 let imgThree = document.getElementById('img-three');
 
-let resultBtn = document.getElementById('view-result-btn');
-let viewResult = document.getElementById('view-result');
+let button = document.getElementById('results-btn');
+let result = document.getElementById('results-list');
 
 function product(name, photoExtension = 'jpg') {
   this.name = name;
@@ -99,13 +99,13 @@ function handleResult() {
     for (let i = 0; i < allProducts.length; i++) {
       let liElem = document.createElement('li');
       liElem.textContent = `${allProducts[i].name}: views: ${allProducts[i].views}, votes: ${allProducts[i].votes}`;
-      viewResult.appendchild(liElem);
+      result.appendchild(liElem);
     }
-    resultBtn.removeEventListener('click', handleResult);
+    button.removeEventListener('click', handleResult);
   }
 }
 
 imgContainer.addEventListener('click', handleClick);
 
-resultBtn.addEventListener('click', handleResult);
+button.addEventListener('click', handleResult);
 
