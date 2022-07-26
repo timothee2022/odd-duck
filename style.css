@@ -1,16 +1,17 @@
 section {
-  border-style: double;
+  border-style: ridge;
 }
 
-img{
+img {
   height: 500px;
   width: 600px;
   float: none;
   border-radius: 50px;
+  border-style: ridge;
 }
 
-body{
-  background-color: lemonchiffon;
+body {
+  background-color: rgb(224, 213, 241);
 }
 
 h1 {
