@@ -1,6 +1,6 @@
 'use strict';
 
-let totalVotes = 5;
+let totalVotes = 25;
 let allProducts = [];
 
 let imgContainer = document.getElementById('img-container');
@@ -100,7 +100,7 @@ function handleClick(event) {
 
 function handleResult() {
   if (totalVotes === 0) {
-    console.log('totalVote is:', totalVotes); 
+    console.log('totalVote is:', totalVotes);
 
     for (let i = 0; i < allProducts.length; i++) {
       let liElem = document.createElement('li');
