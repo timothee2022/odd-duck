@@ -1,6 +1,6 @@
 'use strict';
 
-let totalVotes = 25;
+let totalVotes = 5;
 let allProducts = [];
 
 let imgContainer = document.getElementById('img-container');
@@ -8,10 +8,12 @@ let imgOne = document.getElementById('img-one');
 let imgTwo = document.getElementById('img-two');
 let imgThree = document.getElementById('img-three');
 
-let button = document.getElementById('results-btn');
-let result = document.getElementById('results-list');
+let resultBtn = document.getElementById('show-result-button');
+let resultsList = document.getElementById('results-list');
 
-function product(name, photoExtension = 'jpg') {
+console.dir(resultsList);
+
+function Product(name, photoExtension = 'jpg') {
   this.name = name;
   this.photo = `img/${name}.${photoExtension}`;
   this.views = 0;
@@ -20,25 +22,25 @@ function product(name, photoExtension = 'jpg') {
   allProducts.push(this);
 }
 
-new product('sweep', 'png');
-new product('bag');
-new product('banana');
-new product('bathroom');
-new product('boots');
-new product('breakfast');
-new product('bubblegum');
-new product('chair');
-new product('cthulhu');
-new product('dog-duck');
-new product('dragon');
-new product('pen');
-new product('pet-sweep');
-new product('scissors');
-new product('shark');
-new product('tauntaun');
-new product('unicorn');
-new product('water-can');
-new product('wine-glass');
+new Product('sweep', 'png');
+new Product('bag');
+new Product('banana');
+new Product('bathroom');
+new Product('boots');
+new Product('breakfast');
+new Product('bubblegum');
+new Product('chair');
+new Product('cthulhu');
+new Product('dog-duck');
+new Product('dragon');
+new Product('pen');
+new Product('pet-sweep');
+new Product('scissors');
+new Product('shark');
+new Product('tauntaun');
+new Product('unicorn');
+new Product('water-can');
+new Product('wine-glass');
 
 
 function randonIndexGenerator() {
@@ -80,6 +82,8 @@ renderImg();
 function handleClick(event) {
   let imgClicked = event.target.alt;
 
+  console.log('imgClicked:', imgClicked);
+
   for (let i = 0; i < allProducts.length; i++) {
     if (imgClicked === allProducts[i].name) {
       allProducts[i].votes++;
@@ -96,16 +100,22 @@ function handleClick(event) {
 
 function handleResult() {
   if (totalVotes === 0) {
+    console.log('totalVote is:', totalVotes); 
+
     for (let i = 0; i < allProducts.length; i++) {
       let liElem = document.createElement('li');
       liElem.textContent = `${allProducts[i].name}: views: ${allProducts[i].views}, votes: ${allProducts[i].votes}`;
-      result.appendchild(liElem);
+      console.log('liElem is:', liElem);
+
+      resultsList.appendChild(liElem);
+
     }
-    button.removeEventListener('click', handleResult);
+    resultBtn.removeEventListener('click', handleResult);
   }
+  console.log('resultsList:', resultsList);
 }
 
 imgContainer.addEventListener('click', handleClick);
 
-button.addEventListener('click', handleResult);
+resultBtn.addEventListener('click', handleResult);
 
