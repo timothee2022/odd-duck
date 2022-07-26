@@ -99,8 +99,9 @@ function handleResult() {
     for (let i = 0; i < allProducts.length; i++) {
       let liElem = document.createElement('li');
       liElem.textContent = `${allProducts[i].name}: views: ${allProducts[i].views}, votes: ${allProducts[i].votes}`;
-      resultList.appendchild(liElem);
+      viewResult.appendchild(liElem);
     }
+    resultBtn.removeEventListener('click', handleResult);
   }
 }
 
