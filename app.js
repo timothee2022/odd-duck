@@ -54,16 +54,57 @@ function renderImg() {
   while (imgOneIndex === imgTwoIndex) {
     imgTwoIndex = randonIndexGenerator;
   }
-  // while(imgOneIndex === imgThreeIndex){
-  //   imgOneIndex = randonIndexGenerator;
-  // }
-  // while(imgTwoIndex === imgThreeIndex){
-  //   imgThreeIndex = randonIndexGenerator;
-}
+  while (imgOneIndex === imgThreeIndex) {
+    imgOneIndex = randonIndexGenerator;
+  }
+  while (imgTwoIndex === imgThreeIndex) {
+    imgThreeIndex = randonIndexGenerator;
+  }
 
-imgOne.src = allProducts[imgOneIndex].photo;
-imgTwo.src = allProducts[imgTwoIndex].photo;
-imgThree.src = allProducts[imgThreeIndex].photo;
+  imgOne.src = allProducts[imgOneIndex].photo;
+  imgOne.alt = allProducts[imgOneIndex].name;
+  allProducts[imgOneIndex].views++;
+
+  imgTwo.src = allProducts[imgTwoIndex].photo;
+  imgTwo.alt = allProducts[imgTwoIndex].photo;
+  allProducts[imgTwoIndex].views++;
+
+  imgThree.src = allProducts[imgThreeIndex].photo;
+  imgThree.alt = allProducts[imgThreeIndex].photo;
+  allProducts[imgThreeIndex].views++;
 }
 
 renderImg();
+
+
+function handleClick(event) {
+  let imgClicked = event.target.alt;
+
+  for (let i = 0; i < allProducts.length; i++) {
+    if (imgClicked === allProducts[i].name) {
+      allProducts[i].votes++;
+    }
+  }
+  totalVotes--;
+
+  renderImg();
+
+  if (totalVotes === 0) {
+    imgContainer.removeEventListener('click', handleClick);
+  }
+}
+
+function handleResult() {
+  if (totalVotes === 0) {
+    for (let i = 0; i < allProducts.length; i++) {
+      let liElem = document.createElement('li');
+      liElem.textContent = `${allProducts[i].name}: views: ${allProducts[i].views}, votes: ${allProducts[i].votes}`;
+      resultList.appendchild(liElem);
+    }
+  }
+}
+
+imgContainer.addEventListener('click', handleClick);
+
+resultBtn.addEventListener('click', handleResult);
+
