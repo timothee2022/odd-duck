@@ -70,11 +70,11 @@ function renderImg() {
   allProducts[imgOneIndex].views++;
 
   imgTwo.src = allProducts[imgTwoIndex].photo;
-  imgTwo.alt = allProducts[imgTwoIndex].photo;
+  imgTwo.alt = allProducts[imgTwoIndex].name;
   allProducts[imgTwoIndex].views++;
 
   imgThree.src = allProducts[imgThreeIndex].photo;
-  imgThree.alt = allProducts[imgThreeIndex].photo;
+  imgThree.alt = allProducts[imgThreeIndex].name;
   allProducts[imgThreeIndex].views++;
 }
 
@@ -102,19 +102,79 @@ function handleClick(event) {
 
 function handleResult() {
   if (totalVotes === 0) {
-    console.log('totalVote is:', totalVotes);
+    renderChart();
+    // console.log('totalVote is:', totalVotes);
 
-    for (let i = 0; i < allProducts.length; i++) {
-      let liElem = document.createElement('li');
-      liElem.textContent = `${allProducts[i].name}: views: ${allProducts[i].views}, votes: ${allProducts[i].votes}`;
-      console.log('liElem is:', liElem);
+    // for (let i = 0; i < allProducts.length; i++) {
+    //   let liElem = document.createElement('li');
+    //   liElem.textContent = `${allProducts[i].name}: views: ${allProducts[i].views}, votes: ${allProducts[i].votes}`;
+    //   console.log('liElem is:', liElem);
 
-      resultsList.appendChild(liElem);
+    //   resultsList.appendChild(liElem);
 
-    }
-    resultBtn.removeEventListener('click', handleResult);
   }
-  console.log('resultsList:', resultsList);
+  resultBtn.removeEventListener('click', handleResult);
+}
+//   console.log('resultsList:', resultsList);
+// }
+
+let canvasElem = document.getElementById('myChart');
+
+function renderChart() {
+  const ctx = document.getElementById('myChart').getContext('2d');
+  // Constructor (1arg - my canvas element, 2nd arg - big ol object)
+
+  // function renderChart() {
+  let productsNames = [];
+  let productsVotes = [];
+  let productsViews = [];
+
+  for (let i = 0; i < allProducts.length; i++) {
+    productsNames.push(allProducts[i].name);
+    productsVotes.push(allProducts[i].votes);
+    productsViews.push(allProducts[i].views);
+  }
+
+  let myObj = {
+
+    type: 'bar',
+    data: {
+      labels: productsNames,
+      datasets: [{
+        label: '# of Views',
+        data: productsViews,
+        backgroundColor: [
+          'red',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        label: '# of Votes',
+        data: productsVotes,
+        backgroundColor: [
+          'blue',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+
+
+
+  new Chart(ctx, myObj);
 }
 
 imgContainer.addEventListener('click', handleClick);
