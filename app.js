@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 let totalVotes = 25;
 let allProducts = [];
 
