@@ -103,20 +103,9 @@ function handleClick(event) {
 function handleResult() {
   if (totalVotes === 0) {
     renderChart();
-    // console.log('totalVote is:', totalVotes);
-
-    // for (let i = 0; i < allProducts.length; i++) {
-    //   let liElem = document.createElement('li');
-    //   liElem.textContent = `${allProducts[i].name}: views: ${allProducts[i].views}, votes: ${allProducts[i].votes}`;
-    //   console.log('liElem is:', liElem);
-
-    //   resultsList.appendChild(liElem);
-
   }
   resultBtn.removeEventListener('click', handleResult);
 }
-//   console.log('resultsList:', resultsList);
-// }
 
 let canvasElem = document.getElementById('myChart');
 
@@ -124,7 +113,6 @@ function renderChart() {
   const ctx = document.getElementById('myChart').getContext('2d');
   // Constructor (1arg - my canvas element, 2nd arg - big ol object)
 
-  // function renderChart() {
   let productsNames = [];
   let productsVotes = [];
   let productsViews = [];
